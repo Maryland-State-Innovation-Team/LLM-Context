@@ -1,6 +1,30 @@
 # **Developer's Guide: Maryland iMap Geocoding Service**
 
-This document provides the technical details required to interact with the Maryland iMap REST geocoding services. The information is derived from analyzing existing R and JavaScript implementations and is designed to be language-agnostic.
+This document provides the technical details required to interact with the Maryland iMap REST geocoding services.
+
+## **0\. Guiding Principles for AI Implementation**
+
+**This section provides explicit instructions for an AI assistant generating code based on this guide.**
+
+### **Primary Directive: Live API Integration**
+
+The primary goal is to generate code that performs a **live, real-time HTTP request** to the Maryland iMap geocoding service. The final generated code **must not** contain simulated, mocked, or hardcoded coordinate data.
+
+* **DO:** Write code that dynamically calls the fetch API (or a similar HTTP client) at runtime.  
+* **DO NOT:** Create a static variable or constant (e.g., const geocodedApiData \= {...}) to represent the API's response. The data must be retrieved from the live endpoint.
+
+### **Rationale**
+
+Using the live API is essential to ensure that the geocoded data is accurate and up-to-date. The purpose of this guide is to facilitate the creation of functional, data-driven applications that reflect real-world data.
+
+### **Implementation Checklist**
+
+When generating code, ensure the following criteria are met:
+
+* \[ \] The code makes a fetch (or equivalent) request to the specified API endpoint URL.  
+* \[ \] The request payload is dynamically constructed from a list of input addresses.  
+* \[ \] The JSON response from the live API is parsed and processed at runtime.  
+* \[ \] There are no static variables or objects containing pre-calculated geocoding results.
 
 ## **1\. Core Concepts**
 
