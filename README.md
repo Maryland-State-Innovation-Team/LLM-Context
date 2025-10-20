@@ -2,10 +2,23 @@
 
 This repository provides context files designed for use with large language models (such as Gemini 2.5 Pro) and interactive tools like Canvas. The included context files help LLMs use geocoding, mapping, and open data tools more effectively.
 
+
 ## Contents
 
 - `imap_geocoder.md`: Context for enabling LLMs to use geocoding and mapping tools.
 - `socrata_api.md`: Context for enabling LLMs to access and work with Socrata API data (e.g., Maryland open data).
+- `imap_boundaries.md`: Context for enabling LLMs to use Maryland's official geospatial boundary data for live, interactive mapping.
+## imap_boundaries.md
+
+**Purpose:**  
+Provides context for integrating Maryland's official geospatial boundary data (GeoJSON) into interactive data visualizations. This context enables LLMs to generate code that fetches live boundary data (counties, municipalities, legislative districts, ZIP codes) from Maryland iMap's ArcGIS FeatureServer endpoints, ensuring the most current and authoritative geographic information is used.
+
+**Example Use-Case:**  
+With Gemini 2.5 Pro and the Canvas tool active, you might use the following prompt:
+
+```
+Use the attached markdown to create a map of Maryland legislative districts. When I click on a district I want to learn the legislator's name.
+```
 
 ---
 
@@ -20,8 +33,6 @@ With Gemini 2.5 Pro and the Canvas tool active, you might use the following prom
 ```
 List 15 real addresses around the state of Maryland, and then use the attached context to build an interactive map of their locations.
 ```
-
-*Note: The markdown file itself does not generate addresses or prompts, but provides the necessary context for the LLM to use mapping tools effectively.*
 
 ---
 
@@ -66,13 +77,11 @@ Annual practices (Cover Crops, Conservation Tillage Management, Soil Conservatio
 }
 ```
 
-*Note: The markdown file itself does not provide prompts, but supplies the context needed for the LLM to access and use Socrata API data.*
-
 ---
 
 ## Getting Started
 
-1. Review the context files in `imap_geocoder.md` and `socrata_api.md`.
+1. Review the context files.
 2. Use them as context in your preferred LLM interface (e.g., Gemini 2.5 Pro with Canvas).
 3. For best results, follow the example use-cases above.
 
