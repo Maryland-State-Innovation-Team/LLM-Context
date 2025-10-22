@@ -85,6 +85,28 @@ Each feature's `properties` object will contain the following fields:
 The `COUNTY` field will contain one of the following 24 string values:
 `Allegany`, `Anne Arundel`, `Baltimore`, `Baltimore City`, `Calvert`, `Caroline`, `Carroll`, `Cecil`, `Charles`, `Dorchester`, `Frederick`, `Garrett`, `Harford`, `Howard`, `Kent`, `Montgomery`, `Prince George's`, `Queen Anne's`, `Somerset`, `St. Mary's`, `Talbot`, `Washington`, `Wicomico`, `Worcester`.
 
+* **Key Property for Joining**: The `properties` object of each GeoJSON feature contains two fields for joining:
+    1.  `COUNTY`: The full name (e.g., "Allegany").
+    2.  `COUNTY_FIP`: The county FIPS code.
+
+**CRITICAL JOINING INFORMATION for `COUNTY_FIP`:**
+
+* **Data Type:** This field is a **Number** (e.g., `1`, `3`, `5`, `47`), not a string.
+* **Format:** It does *not* contain the state prefix (`24`) and does *not* have leading zeros.
+* **Example:** Allegany County's `COUNTY_FIP` is `1`, not `"001"` or `"24001"`.
+
+**Action:** When joining this GeoJSON to a Socrata dataset that uses the 5-digit string FIPS (e.g., `"24001"`), you **must** normalize the keys to match.
+
+**JavaScript Normalization Example:**
+```javascript
+// 1. Key from Socrata (e.g., "24001")
+const socrataKey = item.fips.slice(-3); // Result: "001"
+
+// 2. Key from iMap GeoJSON (e.g., 1)
+const geojsonKey = String(feature.properties.COUNTY_FIP).padStart(3, '0'); // Result: "001"
+```
+// Now the keys ("001" === "001") will match.
+
 ### **2.2. Maryland Municipal Boundaries**
 
 Provides the boundaries for incorporated cities and towns within Maryland.
